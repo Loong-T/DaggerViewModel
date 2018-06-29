@@ -1,1 +1,1 @@
-include ':app', ':daggerviewmodel'
+include ':library'
