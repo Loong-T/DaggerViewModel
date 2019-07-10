@@ -2,6 +2,8 @@
 
 ## Usage
 
+This library depends on [dagger.android](https://github.com/google/dagger) and Jetpack's ViewModel. You should know how to use dagger.android and ViewModel first.
+
 ```groovy
 allprojects {
   repositories {
@@ -10,11 +12,9 @@ allprojects {
 }
 
 dependencies {
-        compile 'in.nerd-is:daggerviewmodel:0.2.1'
+    implementation 'in.nerd-is:daggerviewmodel:0.2.1'
 }
 ```
-
-This library depends on [dagger.android](https://github.com/google/dagger) and Jetpack's ViewModel.
 
 ```kotlin
 @Module
@@ -32,5 +32,15 @@ abstract class ViewModelFactoryModule {
 ])
 interface AppComponent {
   fun inject(app: ThisApp)
+}
+```
+
+In Activity or Fragment:
+```koltin
+@Inject
+lateinit var vmFactory: ViewModelProvider.Factory
+
+private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
+  ViewModelProviders.of(this, vmFactory)[YourViewModel::class.java]
 }
 ```
