@@ -36,7 +36,7 @@ interface AppComponent {
 ```
 
 In Activity or Fragment:
-```koltin
+```kotlin
 @Inject
 lateinit var vmFactory: ViewModelProvider.Factory
 
